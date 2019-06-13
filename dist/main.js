@@ -87,6 +87,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _guards_auth_guard_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./guards/auth-guard.service */ "./src/app/guards/auth-guard.service.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _message_parser_parser_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./message-parser/parser.service */ "./src/app/message-parser/parser.service.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+
 
 
 
@@ -103,6 +105,7 @@ var appRoutes = [
     { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_6__["LoginComponent"] },
     { path: 'home', component: _home_home_component__WEBPACK_IMPORTED_MODULE_8__["HomeComponent"], canActivate: [_guards_auth_guard_service__WEBPACK_IMPORTED_MODULE_9__["AuthGuardService"]] }
 ];
+// @ts-ignore
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -117,6 +120,9 @@ var AppModule = /** @class */ (function () {
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_12__["MatListModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_12__["MatDividerModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_12__["MatCardModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_7__["RouterModule"].forRoot(appRoutes, { enableTracing: true }),
                 _angular_forms__WEBPACK_IMPORTED_MODULE_10__["ReactiveFormsModule"]
             ],
@@ -427,6 +433,44 @@ var User = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/message-parser/message-object/product-line.ts":
+/*!***************************************************************!*\
+  !*** ./src/app/message-parser/message-object/product-line.ts ***!
+  \***************************************************************/
+/*! exports provided: ProductLine */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductLine", function() { return ProductLine; });
+var ProductLine = /** @class */ (function () {
+    function ProductLine(m) {
+        this.parserData(m);
+    }
+    ProductLine.prototype.parserData = function (msg) {
+        this.lineCode = msg.lineCode;
+        this.startTime = msg.startTime;
+        this.numberOfMachines = msg.numberOfMachines;
+        this.totalTIme = msg.totalTIme;
+        this.avgTroughPut = msg.avgavgTroughPut;
+        this.expectedHourlyRate = msg.expectedHourlyRate;
+        this.expectedMinuteRate = msg.expectedHourlyRate;
+        this.itemRate = msg.itemRate;
+        this.actualHourlyRate = msg.actualHourlyRate;
+        this.actualMinuteRate = msg.actualMinuteRate;
+        this.currentitemProcessingTime = msg.currentitemProcessingTime;
+        this.status = msg.status;
+        this.responseType = msg.responseType;
+        this.lastItemEndTime = msg.lastItemEndTime;
+        this.currentProduct = msg.currentProduct;
+    };
+    return ProductLine;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/message-parser/message-object/summary.ts":
 /*!**********************************************************!*\
   !*** ./src/app/message-parser/message-object/summary.ts ***!
@@ -468,12 +512,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _message_object_summary__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./message-object/summary */ "./src/app/message-parser/message-object/summary.ts");
+/* harmony import */ var _message_object_product_line__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./message-object/product-line */ "./src/app/message-parser/message-object/product-line.ts");
+
 
 
 
 var MessageEvents = /** @class */ (function () {
     function MessageEvents() {
         this.summaryUpdate = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.productLineUpdate = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
     }
     return MessageEvents;
 }());
@@ -486,6 +533,9 @@ var ParserService = /** @class */ (function () {
         switch (message.responseType) {
             case 103:
                 this.messageEvents.summaryUpdate.emit(new _message_object_summary__WEBPACK_IMPORTED_MODULE_2__["Summary"](message));
+                break;
+            case 105:
+                this.messageEvents.productLineUpdate.emit(new _message_object_product_line__WEBPACK_IMPORTED_MODULE_3__["ProductLine"](message));
                 break;
         }
     };
@@ -520,7 +570,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n\n  <!-- Content Column -->\n  <div class=\"col-lg-12 mb-12\">\n\n    <!-- Project Card Example -->\n    <div class=\"card shadow mb-4\">\n      <div class=\"card-header py-3\">\n        <h6 class=\"m-0 font-weight-bold text-primary\">Products Line</h6>\n      </div>\n      <div class=\"card-body\">\n        <h4 class=\"small font-weight-bold\">PRODCUT001 <span class=\"float-right\">20%</span></h4>\n        <div class=\"progress mb-4\">\n          <div class=\"progress-bar bg-info\" role=\"progressbar\" style=\"width: 20%\" aria-valuenow=\"20\" aria-valuemin=\"0\"\n               aria-valuemax=\"100\"></div>\n        </div>\n<!--        <h4 class=\"small font-weight-bold\">Sales Tracking <span class=\"float-right\">40%</span></h4>-->\n<!--        <div class=\"progress mb-4\">-->\n<!--          <div class=\"progress-bar bg-warning\" role=\"progressbar\" style=\"width: 40%\" aria-valuenow=\"40\"-->\n<!--               aria-valuemin=\"0\" aria-valuemax=\"100\"></div>-->\n<!--        </div>-->\n<!--        <h4 class=\"small font-weight-bold\">Customer Database <span class=\"float-right\">60%</span></h4>-->\n<!--        <div class=\"progress mb-4\">-->\n<!--          <div class=\"progress-bar\" role=\"progressbar\" style=\"width: 60%\" aria-valuenow=\"60\" aria-valuemin=\"0\"-->\n<!--               aria-valuemax=\"100\"></div>-->\n<!--        </div>-->\n<!--        <h4 class=\"small font-weight-bold\">Payout Details <span class=\"float-right\">80%</span></h4>-->\n<!--        <div class=\"progress mb-4\">-->\n<!--          <div class=\"progress-bar bg-info\" role=\"progressbar\" style=\"width: 80%\" aria-valuenow=\"80\" aria-valuemin=\"0\"-->\n<!--               aria-valuemax=\"100\"></div>-->\n<!--        </div>-->\n<!--        <h4 class=\"small font-weight-bold\">Account Setup <span class=\"float-right\">Complete!</span></h4>-->\n<!--        <div class=\"progress\">-->\n<!--          <div class=\"progress-bar bg-success\" role=\"progressbar\" style=\"width: 100%\" aria-valuenow=\"100\"-->\n<!--               aria-valuemin=\"0\" aria-valuemax=\"100\"></div>-->\n<!--        </div>-->\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<h6 class=\"m-0 font-weight-bold text-primary\">Production Lines</h6>\n<div class=\"row\" *ngFor=\"let productLine of productLines\">\n\n  <!-- Content Column -->\n  <div class=\"col-lg-12 mb-12\">\n\n    <!-- Project Card Example -->\n    <div class=\"card shadow mb-4\">\n      <div class=\"card-header py-3\">\n        <h5 class=\"m-0 font-weight-bold text-primary\">{{productLine.lineCode}} </h5>\n      </div>\n      <div class=\"card-body\">\n        <h4 class=\"small font-weight-bold\">{{productLine.lineCode}} <span class=\"float-right\">20%</span></h4>\n        <div class=\"progress mb-4\">\n          <div class=\"progress-bar bg-info\" role=\"progressbar\" style=\"width: 20%\" aria-valuenow=\"20\" aria-valuemin=\"0\"\n               aria-valuemax=\"100\"></div>\n\n        </div>\n        <div class=\"row\">\n          <div class=\"col-lg-7 mb-7\">\n            <mat-card class=\"example-card bg-warning\">\n              <mat-card-header>\n                <h6 class=\"m-0 font-weight-bold text-white \">Product Line Summary</h6>\n              </mat-card-header>\n              <mat-card-content>\n                <mat-list>\n                  <mat-list-item><b>Start Time : </b> {{productLine.startTime}}</mat-list-item>\n                  <mat-divider></mat-divider>\n                  <mat-list-item><b>Last Item End Time : </b> {{productLine.lastItemEndTime}}</mat-list-item>\n                  <mat-divider></mat-divider>\n                  <mat-list-item><b>Number Of Machines: </b>{{productLine.numberOfMachines}}\n                  </mat-list-item>\n                  <mat-divider></mat-divider>\n                  <mat-list-item><b>Total Time : </b> {{productLine.totalTIme}}</mat-list-item>\n                  <mat-divider></mat-divider>\n                  <mat-list-item><b>Expected Hourly Rate: </b> {{productLine.expectedHourlyRate}}</mat-list-item>\n                  <mat-divider></mat-divider>\n                  <mat-list-item><b>Expected Minute Rate: </b> {{productLine.expectedMinuteRate}}</mat-list-item>\n                  <mat-divider></mat-divider>\n                  <mat-list-item><b>Item Rate: </b> {{productLine.itemRate}}</mat-list-item>\n                  <mat-divider></mat-divider>\n                  <mat-list-item><b>Actual Hourly Rate: </b> {{productLine.actualHourlyRate}}</mat-list-item>\n                  <mat-divider></mat-divider>\n                  <mat-list-item><b>Actual Minute Rate: </b> {{productLine.actualMinuteRate}}</mat-list-item>\n                  <mat-divider></mat-divider>\n                  <mat-list-item><b>Current Item Processing Time: </b> {{productLine.currentitemProcessingTime}}</mat-list-item>\n                </mat-list>\n              </mat-card-content>\n            </mat-card>\n          </div>\n\n          <div class=\"col-lg-5 mb-5\">\n            <mat-card class=\"example-card bg-success \">\n              <mat-card-header>\n                <h6 class=\"m-0 font-weight-bold text-white\"> Current Product</h6>\n              </mat-card-header>\n              <mat-card-content>\n                <mat-list>\n                  <mat-list-item><b>Product Code :</b> {{productLine.currentProduct.productCode}}</mat-list-item>\n                  <mat-divider></mat-divider>\n                  <mat-list-item><b>Avg Cycle Time :</b> {{productLine.currentProduct.avgCycleTime}}</mat-list-item>\n                  <mat-divider></mat-divider>\n                  <mat-list-item><b>Current Total Count : </b>{{productLine.currentProduct.currentTotalCount}}\n                  </mat-list-item>\n                  <mat-divider></mat-divider>\n                  <mat-list-item><b>Cost :</b> {{productLine.currentProduct.cost}}</mat-list-item>\n                  <mat-divider></mat-divider>\n                  <mat-list-item><b>Expected Profit :</b> {{productLine.currentProduct.exptectedProfit}}</mat-list-item>\n                </mat-list>\n              </mat-card-content>\n            </mat-card>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n"
 
 /***/ }),
 
@@ -536,10 +586,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductLineComponent", function() { return ProductLineComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _message_parser_parser_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../message-parser/parser.service */ "./src/app/message-parser/parser.service.ts");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
 
 
+
+
+// @ts-ignore
 var ProductLineComponent = /** @class */ (function () {
-    function ProductLineComponent() {
+    function ProductLineComponent(messageEvents) {
+        var _this = this;
+        this.messageEvents = messageEvents;
+        this.productLines = [];
+        this.messageEvents.productLineUpdate.subscribe(function (data) {
+            var index = lodash__WEBPACK_IMPORTED_MODULE_3___default.a.findIndex(_this.productLines, { lineCode: data.lineCode });
+            if (index > 0) {
+                data.currentProduct = data.currentProduct || {};
+                _this.productLines.splice(index, 1, data);
+            }
+            else {
+                data.currentProduct = data.currentProduct || {};
+                _this.productLines.push(data);
+            }
+        });
     }
     ProductLineComponent.prototype.ngOnInit = function () {
     };
@@ -549,7 +619,7 @@ var ProductLineComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./product-line.component.html */ "./src/app/product-line/product-line.component.html"),
             styles: [__webpack_require__(/*! ./product-line.component.css */ "./src/app/product-line/product-line.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_message_parser_parser_service__WEBPACK_IMPORTED_MODULE_2__["MessageEvents"]])
     ], ProductLineComponent);
     return ProductLineComponent;
 }());

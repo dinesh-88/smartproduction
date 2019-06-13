@@ -10,12 +10,14 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MessageEvents } from './message-parser/parser.service';
+import { MatCardModule, MatDividerModule, MatListModule } from '@angular/material';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuardService]}
 ];
 
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +28,9 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    MatListModule,
+    MatDividerModule,
+    MatCardModule,
     RouterModule.forRoot(
       appRoutes,
       {enableTracing: true}
