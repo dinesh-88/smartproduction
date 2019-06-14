@@ -5,6 +5,7 @@ import { WebsocketService } from './websocket.service';
 import { map } from 'rxjs/operators';
 
 const WS_URL = 'ws://18.188.153.242:9000/WebSocket';
+// const WS_URL = 'ws://localhost:8080';
 
 export interface Message {
   author: string;

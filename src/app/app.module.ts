@@ -8,9 +8,16 @@ import { LoginComponent } from './login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AuthGuardService } from './guards/auth-guard.service';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MessageEvents } from './message-parser/parser.service';
-import { MatCardModule, MatDividerModule, MatExpansionModule, MatListModule } from '@angular/material';
+import {
+  MatCardModule,
+  MatDividerModule,
+  MatExpansionModule,
+  MatListModule,
+  MatProgressBarModule,
+  MatSliderModule
+} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
@@ -34,11 +41,14 @@ const appRoutes: Routes = [
     MatCardModule,
     MatExpansionModule,
     BrowserAnimationsModule,
+    MatProgressBarModule,
     RouterModule.forRoot(
       appRoutes,
       {enableTracing: true}
     ),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSliderModule,
+    FormsModule
   ],
   providers: [MessageEvents],
   bootstrap: [AppComponent]

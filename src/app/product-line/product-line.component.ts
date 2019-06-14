@@ -11,11 +11,12 @@ import _ from 'lodash';
 })
 export class ProductLineComponent implements OnInit {
   productLines: ProductLine[] = [];
-
+  color = 'primary';
+  mode = 'determinate';
   constructor(private messageEvents: MessageEvents) {
     this.messageEvents.productLineUpdate.subscribe(data => {
       const index = _.findIndex(this.productLines, {lineCode: data.lineCode});
-      if (index > 0) {
+      if (index > -1) {
         data.currentProduct = data.currentProduct || {};
         this.productLines.splice(index, 1, data);
 
@@ -28,6 +29,9 @@ export class ProductLineComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+  trackBy(index, item) {
+    return item.lineCode; // or item.id
   }
 
 }
