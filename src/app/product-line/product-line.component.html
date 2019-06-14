@@ -1,78 +1,80 @@
-<h6 class="m-0 font-weight-bold text-primary">Production Lines</h6>
-<div class="row" *ngFor="let productLine of productLines">
+<h6 class="m-0 font-weight-bold text-primary" style="margin-top: 15px;margin-bottom: 15px">Production Lines</h6>
+<div class="row margin-bottom" *ngFor="let productLine of productLines">
 
   <!-- Content Column -->
   <div class="col-lg-12 mb-12">
-
-    <!-- Project Card Example -->
-    <div class="card shadow mb-4">
-      <div class="card-header py-3">
-        <h5 class="m-0 font-weight-bold text-primary">{{productLine.lineCode}} </h5>
-      </div>
-      <div class="card-body">
-        <h4 class="small font-weight-bold">{{productLine.lineCode}} <span class="float-right">20%</span></h4>
-        <div class="progress mb-4">
-          <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0"
-               aria-valuemax="100"></div>
-
-        </div>
-        <div class="row">
-          <div class="col-lg-7 mb-7">
-            <mat-card class="example-card bg-warning">
-              <mat-card-header>
-                <h6 class="m-0 font-weight-bold text-white ">Product Line Summary</h6>
-              </mat-card-header>
-              <mat-card-content>
-                <mat-list>
-                  <mat-list-item><b>Start Time : </b> {{productLine.startTime}}</mat-list-item>
-                  <mat-divider></mat-divider>
-                  <mat-list-item><b>Last Item End Time : </b> {{productLine.lastItemEndTime}}</mat-list-item>
-                  <mat-divider></mat-divider>
-                  <mat-list-item><b>Number Of Machines: </b>{{productLine.numberOfMachines}}
-                  </mat-list-item>
-                  <mat-divider></mat-divider>
-                  <mat-list-item><b>Total Time : </b> {{productLine.totalTIme}}</mat-list-item>
-                  <mat-divider></mat-divider>
-                  <mat-list-item><b>Expected Hourly Rate: </b> {{productLine.expectedHourlyRate}}</mat-list-item>
-                  <mat-divider></mat-divider>
-                  <mat-list-item><b>Expected Minute Rate: </b> {{productLine.expectedMinuteRate}}</mat-list-item>
-                  <mat-divider></mat-divider>
-                  <mat-list-item><b>Item Rate: </b> {{productLine.itemRate}}</mat-list-item>
-                  <mat-divider></mat-divider>
-                  <mat-list-item><b>Actual Hourly Rate: </b> {{productLine.actualHourlyRate}}</mat-list-item>
-                  <mat-divider></mat-divider>
-                  <mat-list-item><b>Actual Minute Rate: </b> {{productLine.actualMinuteRate}}</mat-list-item>
-                  <mat-divider></mat-divider>
-                  <mat-list-item><b>Current Item Processing Time: </b> {{productLine.currentitemProcessingTime}}</mat-list-item>
-                </mat-list>
-              </mat-card-content>
-            </mat-card>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h5 class="m-0 font-weight-bold text-primary">{{productLine.lineCode}} </h5>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="card-body">
+          <h4 class="small font-weight-bold">{{productLine.lineCode}} <span class="float-right">20%</span></h4>
+          <div class="progress mb-4">
+            <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0"
+                 aria-valuemax="100"></div>
           </div>
+          <div class="row">
+            <div class="col-lg-7 mb-7">
+              <mat-card class="example-card bg-warning">
+                <mat-card-header>
+                  <h6 class="m-0 font-weight-bold text-white ">Product Line Summary</h6>
+                </mat-card-header>
+                <mat-card-content>
+                  <mat-list>
+                    <mat-list-item><b>Start Time : </b> {{productLine.startTime}}</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item><b>Last Item End Time : </b> {{productLine.lastItemEndTime}}</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item><b>Number Of Machines: </b>{{productLine.numberOfMachines}}
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item><b>Total Time : </b> {{productLine.totalTIme}}</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item><b>Expected Hourly Rate: </b> {{productLine.expectedHourlyRate}}</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item><b>Expected Minute Rate: </b> {{productLine.expectedMinuteRate}}</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item><b>Item Rate: </b> {{productLine.itemRate}}</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item><b>Actual Hourly Rate: </b> {{productLine.actualHourlyRate}}</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item><b>Actual Minute Rate: </b> {{productLine.actualMinuteRate}}</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item><b>Current Item Processing Time: </b> {{productLine.currentitemProcessingTime}}</mat-list-item>
+                  </mat-list>
+                </mat-card-content>
+              </mat-card>
+            </div>
 
-          <div class="col-lg-5 mb-5">
-            <mat-card class="example-card bg-success ">
-              <mat-card-header>
-                <h6 class="m-0 font-weight-bold text-white"> Current Product</h6>
-              </mat-card-header>
-              <mat-card-content>
-                <mat-list>
-                  <mat-list-item><b>Product Code :</b> {{productLine.currentProduct.productCode}}</mat-list-item>
-                  <mat-divider></mat-divider>
-                  <mat-list-item><b>Avg Cycle Time :</b> {{productLine.currentProduct.avgCycleTime}}</mat-list-item>
-                  <mat-divider></mat-divider>
-                  <mat-list-item><b>Current Total Count : </b>{{productLine.currentProduct.currentTotalCount}}
-                  </mat-list-item>
-                  <mat-divider></mat-divider>
-                  <mat-list-item><b>Cost :</b> {{productLine.currentProduct.cost}}</mat-list-item>
-                  <mat-divider></mat-divider>
-                  <mat-list-item><b>Expected Profit :</b> {{productLine.currentProduct.exptectedProfit}}</mat-list-item>
-                </mat-list>
-              </mat-card-content>
-            </mat-card>
+            <div class="col-lg-5 mb-5">
+              <mat-card class="example-card bg-success ">
+                <mat-card-header>
+                  <h6 class="m-0 font-weight-bold text-white"> Current Product</h6>
+                </mat-card-header>
+                <mat-card-content>
+                  <mat-list>
+                    <mat-list-item><b>Product Code :</b> {{productLine.currentProduct.productCode}}</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item><b>Avg Cycle Time :</b> {{productLine.currentProduct.avgCycleTime}}</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item><b>Current Total Count : </b>{{productLine.currentProduct.currentTotalCount}}
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item><b>Cost :</b> {{productLine.currentProduct.cost}}</mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item><b>Expected Profit :</b> {{productLine.currentProduct.exptectedProfit}}</mat-list-item>
+                  </mat-list>
+                </mat-card-content>
+              </mat-card>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      </mat-expansion-panel>
+    </mat-accordion>
   </div>
 </div>
+<br>
 

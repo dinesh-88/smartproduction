@@ -10,7 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MessageEvents } from './message-parser/parser.service';
-import { MatCardModule, MatDividerModule, MatListModule } from '@angular/material';
+import { MatCardModule, MatDividerModule, MatExpansionModule, MatListModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -31,6 +32,8 @@ const appRoutes: Routes = [
     MatListModule,
     MatDividerModule,
     MatCardModule,
+    MatExpansionModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(
       appRoutes,
       {enableTracing: true}
